@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 
+import com.mouritech.onlineshoppingsystem.entity.Order;
 import com.mouritech.onlineshoppingsystem.entity.OrderDetails;
 import com.mouritech.onlineshoppingsystem.exception.OrderDetailsNotFoundException;
 
@@ -20,5 +21,15 @@ public interface OrderDetailsService {
 	
 
 	ResponseEntity<OrderDetails> updateOrderDetails(Long orderDetailsId, @Valid OrderDetails orderDetails) throws OrderDetailsNotFoundException;
+
+	
+	List<OrderDetails> getAllOrderDetails();
+	OrderDetails saveOrderDetails(OrderDetails OrderDetails);
+
+	
+//
+//	List<OrderDetails> findByCustomer_CustId(String custId);
+	
+	
 
 }

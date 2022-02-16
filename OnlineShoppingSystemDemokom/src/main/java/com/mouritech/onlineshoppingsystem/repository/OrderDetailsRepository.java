@@ -13,6 +13,9 @@ public interface OrderDetailsRepository extends JpaRepository<OrderDetails, Long
 	List<OrderDetails> findByOrder_OrderId(String orderId);
 
 
+//	List<OrderDetails> findByOrder_Customer_CustId(String custId);
+
+
 
 
 	

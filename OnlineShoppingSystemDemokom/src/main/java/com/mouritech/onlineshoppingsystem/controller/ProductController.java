@@ -68,7 +68,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/products/{catid}")
-	public ResponseEntity<List<Product>> getAllProductsBySellerId(@PathVariable("catid") String catid) throws CategoryNotFoundException {
+	public ResponseEntity<List<Product>> getAllProductsByCategoryId(@PathVariable("catid") String catid) throws CategoryNotFoundException {
 		return productService.getAllProductsByCategoryId(catid);
 	}
 	
@@ -78,11 +78,11 @@ public class ProductController {
 		return productService.createProduct(catid,newProduct);
 		
 	}
-	
+	//get catid and productname
 	@GetMapping("/products/{catid}/{productname}")
-	public Product getProductNameBySeller(@PathVariable("catid") String catid,
-			@PathVariable("productname") String productname) throws CategoryNotFoundException, ProductNameAlreadyExistsException {
-		return productService.getProductNameBySeller(catid,productname);
+	public Product getCategory_CatIdByProdName(@PathVariable("catid") String catId,
+			@PathVariable("productname") String prodName) throws CategoryNotFoundException, ProductNameAlreadyExistsException {
+		return productService.getCategory_CatIdByProdName(catId,prodName);
 	}
 	
 	

@@ -30,6 +30,18 @@ public class OrderDetailsController {
 	@Autowired
 	private OrderDetailsService orderdetailsService;
 
+	//get all orders details
+	@GetMapping("/orderdetails")
+	public List<OrderDetails> getAllOrders()
+	{
+		return orderdetailsService.getAllOrderDetails();
+	}
+	//Post all orders details
+	@PostMapping("/orderdetails")
+	public OrderDetails saveOrderDetails(@Valid @RequestBody OrderDetails orderdetails)
+	{
+		return orderdetailsService.saveOrderDetails(orderdetails);
+	}
 	// save order details with corresponded orderId
 	@PostMapping("orders/{orderId}/orderdetails")
 	public OrderDetails insertOrderDetails(@PathVariable(value = "orderId") String orderId,
@@ -54,9 +66,13 @@ public class OrderDetailsController {
 
 	}
 
+	// get all the order details by corresponding customerId
+//		@GetMapping("/orders/{customerId}")
+//		public List<OrderDetails> getAllOrderDetailsByCustomertId(@PathVariable(value = "customerId") String custId)throws CustomerNotFoundException {
+//			return orderdetailsService.findByCustomer_CustId(custId);
+//		}
 
-
-	// update orderDetails by orderId and orderDetailsId
+	// update orderDetails by  orderDetailsId  update status and comment
 	@PutMapping("/orders/orderdetails/{orderDetailsId}")
 		    public ResponseEntity<OrderDetails> updateOrderDetails(@PathVariable(value = "orderDetailsId") Long orderDetailsId,
 		         @Valid @RequestBody OrderDetails orderDetails) throws OrderDetailsNotFoundException {

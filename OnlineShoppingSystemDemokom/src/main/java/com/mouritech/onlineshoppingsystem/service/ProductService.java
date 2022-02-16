@@ -24,7 +24,9 @@ public interface ProductService {
 	void deleteProductById(String prodId) throws ProductNotFoundException;
 	ResponseEntity<List<Product>> getAllProductsByCategoryId(String catid);
 	ResponseEntity<Product> createProduct(String catid, Product newProduct);
-	Product getProductNameBySeller(String catid, String productname) throws ProductNameAlreadyExistsException;
+	Product getCategory_CatIdByProdName(String catid, String productname) throws ProductNameAlreadyExistsException;
+
+
 
 
 	

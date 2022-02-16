@@ -129,16 +129,25 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 
+//	@Override
+//	public ResponseEntity<List<Product>> getAllProductsByCategoryId(String catid) {
+//		if(!categoryRepository.existsByCatId(catid)) {
+//			throw new CategoryNotFoundException("Category not found with id = "  + catid);
+//		}
+//		List<Product> products = productRepository.findByCategory(catid);
+//		return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
+//	}
+
 	@Override
 	public ResponseEntity<List<Product>> getAllProductsByCategoryId(String catid) {
-		if(!categoryRepository.existsByCatId(catid)) {
-			throw new CategoryNotFoundException("Category not found with id = "  + catid);
-		}
-		List<Product> products = productRepository.findByCategory(catid);
-		return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
+	if(!categoryRepository.existsCategoryByCatId(catid)) {
+	throw new CategoryNotFoundException("Category not found with id = " + catid);
 	}
-
-
+	List<Product> products = productRepository.findByCategory_CatId(catid);
+	return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
+	}
+	
+	
 	@Override
 	public ResponseEntity<Product> createProduct(String catid, Product newProduct) throws CategoryNotFoundException {
 		
@@ -153,11 +162,14 @@ public class ProductServiceImpl implements ProductService{
 
 
 	@Override
-	public Product getProductNameBySeller(String catid, String productname) throws ProductNameAlreadyExistsException {
+	public Product getCategory_CatIdByProdName(String catid, String productname) throws ProductNameAlreadyExistsException {
 		
-				return productRepository.findByProdNameAndCategory(catid, productname).
+				return productRepository.findByCategory_CatIdAndProdName(catid, productname).
 				orElseThrow(() -> new ProductNameAlreadyExistsException("Product already exists with the name = " + productname));
 	}
+
+
+
 
 	
 

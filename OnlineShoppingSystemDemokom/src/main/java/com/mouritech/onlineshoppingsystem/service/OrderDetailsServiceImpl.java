@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.mouritech.onlineshoppingsystem.entity.Order;
 import com.mouritech.onlineshoppingsystem.entity.OrderDetails;
 import com.mouritech.onlineshoppingsystem.exception.OrderDetailsNotFoundException;
 import com.mouritech.onlineshoppingsystem.repository.OrderDetailsRepository;
 import com.mouritech.onlineshoppingsystem.repository.OrderRepository;
+
 
 @Service
 public class OrderDetailsServiceImpl implements OrderDetailsService {
@@ -21,6 +23,18 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 	
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Override
+	public List<OrderDetails> getAllOrderDetails() {
+		// TODO Auto-generated method stub
+		return  orderdetailsRepository.findAll();
+	} 
+	@Override
+	public OrderDetails saveOrderDetails(OrderDetails OrderDetails) {
+		
+		
+		return orderdetailsRepository.save(OrderDetails);
+	}
 
 	@Override
 	public OrderDetails insertOrderDetails(String orderId, @Valid OrderDetails newOrderDetails)
@@ -62,6 +76,13 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 			        final OrderDetails updatedOrerDetails = orderdetailsRepository.save(newOrderDetails);
 			        return ResponseEntity.ok(updatedOrerDetails);
 	}
+//	@Override
+//	public List<OrderDetails> findByCustomer_CustId(String custId) {
+//		
+//		return orderdetailsRepository.findByOrder_Customer_CustId(custId);
+//	}
+
+	
 
 	
 	
