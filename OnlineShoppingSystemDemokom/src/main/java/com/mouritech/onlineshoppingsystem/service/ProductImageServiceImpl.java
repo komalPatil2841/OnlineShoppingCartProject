@@ -99,6 +99,7 @@ public class ProductImageServiceImpl implements ProductImageService{
   				retrievedImage.get().getImageType(),
   				decompressByte(retrievedImage.get().getPicByte()));
   		img.setImageId(retrievedImage.get().getImageId());
+  		img.setProduct(retrievedImage.get().getProduct());
   		return img;
 	}
 
